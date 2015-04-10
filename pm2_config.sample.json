@@ -1,0 +1,13 @@
+{
+    "name": "service-registry",
+    "script": "./index.js",
+    "instances": "1",
+    "exec_mode": "cluster_mode",
+    "merge_logs" : true,
+    "run_as_user" : "ogrunner",
+    "error_file": "/var/log/service-registry/err.log",
+    "out_file": "/var/log/service-registry/out.log",
+    "env": {
+        "NODE_ENV": "development"
+    }
+}
