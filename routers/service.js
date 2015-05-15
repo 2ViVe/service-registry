@@ -1,15 +1,17 @@
 var ConfigurationManager = require('../managers/service-manager');
-var router = require('nodejs-lighter').Router();
 
-router.get('/:serviceName', function (req, res, next) {
-    var context = req.context,
-        serviceName = req.params.serviceName;
+function registRouters(lighter, middleware, handler) {
 
-    ConfigurationManager.getServicesByNameAsync(context, serviceName).then(function (services) {
-            next({body: services});
-        }).catch(function (error) {
-            next(error);
-        });
-});
+    lighter.get('/v1/services/:serviceName', function (req, res, next) {
+        var context = req.context,
+            serviceName = req.params.serviceName;
 
-module.exports = router;
+        ConfigurationManager.getServicesByNameAsync(context, serviceName).then(function (services) {
+                next({body: services});
+            }).catch(function (error) {
+                next(error);
+            });
+    });
+}
+
+module.exports = registRouters;

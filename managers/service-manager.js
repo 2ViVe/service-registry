@@ -6,7 +6,7 @@ var BroadcastManager = require('./broadcast-manager');
 var servicesConfigLoaded = false;
 var serviceListMapByName = {};
 
-var configFilesDir = path.join(__dirname, '../config-files');
+var configFilesDir = SERVICE.CONFIG_FILES_DIR;
 fs.watch(configFilesDir, function (event, fileName) {
     var regJSON = /(\w+).json$/i,
         matchJSON = regJSON.exec(fileName),
@@ -16,7 +16,7 @@ fs.watch(configFilesDir, function (event, fileName) {
         return;
     }
 
-    console.log('config files changed.')
+    console.log('config files changed.');
     loadServicesConfigAsync(true);
 });
 
@@ -64,7 +64,7 @@ function loadServicesConfigAsync(forceReload) {
             return;
         }
 
-        var configFile = path.join(__dirname, '../config-files/services.json');
+        var configFile = SERVICE.SERVICE_CONFIG_FILE_PATH;
         loadServicesFromFileAsync(configFile).then(function (services) {
             if (!services || !services.length) {
                 return;
@@ -129,5 +129,7 @@ exports.getServicesByNameAsync = function (context, serviceName) {
         });
     });
 };
+
+exports.getServicesAsync = loadServicesFromFileAsync;
 
 exports.loadServicesConfigAsync = loadServicesConfigAsync;

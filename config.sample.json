@@ -1,7 +1,0 @@
-{
-  "name": "service-registry",
-  "port": "8060",
-  "log": {
-    "level": "trace"
-  }
-}
