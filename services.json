@@ -1,0 +1,18 @@
+{
+  "services": [
+    {
+      "name": "configuration-service",
+      "host": "localhost",
+      "port": 8071,
+      "api-uri": "/v1",
+      "status-uri": "/service-status"
+    },
+    {
+      "name": "authentication-service",
+      "host": "localhost",
+      "port": 8072,
+      "api-uri": "/v1",
+      "status-uri": "/service-status"
+    }
+  ]
+}
